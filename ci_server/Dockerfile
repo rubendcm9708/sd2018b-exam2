@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM centos/python-36-centos7
 COPY . /code
 WORKDIR /code
 RUN pip3.6 install --upgrade pip
