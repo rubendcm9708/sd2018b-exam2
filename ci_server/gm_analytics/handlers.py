@@ -29,7 +29,7 @@ def buildimage():
         #Get Dockerfile content and create Dockerfile
         dockerfile_url="https://raw.githubusercontent.com/rubendcm9708/sd2018b-exam2/"+pr_id+"/Dockerfile"
         dockerfile_data=requests.get(dockerfile_url)
-        file = open("Dockerfile","w")
+        file = open("/code/gm_analytics/Dockerfile","w")
         file.write(str(dockerfile_data.content, 'utf-8'))
         file.close()
 
@@ -38,7 +38,7 @@ def buildimage():
 
         #Create docker client, and build and push image
         client = docker.DockerClient(base_url='unix://var/run/docker.sock')
-        client.images.build(path="./", tag=tag)
+        client.images.build(path="/code/gm_analytics/", tag=tag)
         client.images.push(tag)
         client.images.remove(image=tag, force=True)
         return{"Status":"Requested and succesfully"}
